@@ -1,0 +1,18 @@
+name: 功能与内容建议
+description: 对插件功能、官网内容或使用教程提出建议。
+title: '[建议] '
+body:
+  - type: textarea
+    id: task
+    attributes:
+      label: 你希望完成什么任务？
+      description: 请描述使用场景，以及当前操作中的困难。
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 希望如何改进？
+      description: 可以说明所需格式、内容类型或教程主题，并提供脱敏示例。
+    validations:
+      required: true

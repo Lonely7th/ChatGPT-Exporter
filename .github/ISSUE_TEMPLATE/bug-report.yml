@@ -1,0 +1,47 @@
+name: 使用问题反馈
+description: 反馈官网或插件在安装、转换及文档排版中的问题。
+title: '[问题] '
+body:
+  - type: markdown
+    attributes:
+      value: '请先查看官网排查指南。Issue 内容公开，请勿提交密码、登录令牌或未脱敏的敏感对话。'
+  - type: dropdown
+    id: area
+    attributes:
+      label: 问题发生位置
+      options:
+        - 浏览器插件
+        - 中文官网
+    validations:
+      required: true
+  - type: dropdown
+    id: browser
+    attributes:
+      label: 使用的浏览器
+      options:
+        - Chrome
+        - Edge
+        - 360 浏览器
+        - Firefox（火狐）
+        - 其他（请在环境信息中说明）
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: 版本与环境
+      description: 请填写操作系统、浏览器版本、插件版本；涉及文件排版时补充 Word/WPS 等软件版本。
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 复现步骤
+      description: 请说明使用的导出格式、操作步骤、预期结果和实际现象。错误提示可直接粘贴。
+    validations:
+      required: true
+  - type: textarea
+    id: sample
+    attributes:
+      label: 脱敏样例或截图（可选）
+      description: 提供可复现问题的最短内容即可，敏感材料请勿公开上传。

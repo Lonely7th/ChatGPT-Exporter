@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 安装与首次使用
+    url: https://chatgptexporter.cn/install/
+    about: 选择 Chrome、Edge、360 浏览器或 Firefox 对应入口并查看操作指南。
+  - name: 常见问题与排查
+    url: https://chatgptexporter.cn/faq/
+    about: 了解格式、公式、登录、额度与联网处理等常见问题。
