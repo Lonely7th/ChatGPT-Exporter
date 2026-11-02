@@ -1,0 +1,63 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { SITE } from '../data/site';
+---
+
+<Base
+  title={`关于与联系｜${SITE.name}`}
+  description="了解 ChatGPT Exporter 中文站、对应插件的身份信息，以及使用问题和产品建议的反馈方式。"
+>
+  <PageHero
+    title="让有价值的对话，成为可用的文档。"
+    description="ChatGPT Exporter 中文站，为用户提供中文产品说明、安装指南和导出教程。"
+    eyebrow="关于与联系"
+  />
+  <article class="container narrow prose">
+    <h2>关于本站</h2>
+    <p>
+      本站域名为 chatgptexporter.cn，介绍对应的 ChatGPT Exporter
+      对话导出插件。我们关注从 AI
+      对话到日常文档的整理过程，帮助用户理解格式、操作与使用条件。
+    </p>
+    <p>
+      “中文站”指网站内容与服务面向中文用户，不限定对话语言。你可以整理中文、英文和中英混排的工作与学习内容。
+    </p>
+    <h2>确认你使用的是对应插件</h2>
+    <p>同名产品可能来自不同开发者。请以本站链接和以下商店身份信息识别产品：</p>
+    <ul>
+      <li>商店名称：ChatGPT Exporter – ChatGPT对话批量导出</li>
+      <li>
+        扩展 ID：<code>hpcgnbhdkbajengeapopcckejikkmhcb</code>
+      </li>
+      <li>商店列示开发者：李英杰</li>
+    </ul>
+    <p>
+      <a
+        href={SITE.store}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-store-link
+        data-location="about"
+      >
+        查看对应的 Chrome 应用商店页面 ↗
+      </a>
+    </p>
+    <p>
+      本站的“中文站”称谓不表示获得其他同名产品的地区授权。ChatGPT
+      与相关商标归其各自权利人所有，本产品与 OpenAI 无隶属或背书关系。
+    </p>
+    <h2>联系与反馈</h2>
+    <p>
+      产品建议、使用问题或隐私相关咨询，可联系：
+      <a href={`mailto:${SITE.email}`}>{SITE.email}</a>。
+    </p>
+    <p>
+      为便于定位问题，请提供插件与浏览器版本、导出格式、操作步骤和脱敏后的最小样例。请勿发送密码、登录令牌或未脱敏的敏感内容。
+    </p>
+    <h2>内容维护</h2>
+    <p>
+      本站教程根据产品已知能力编写，并标注更新时间。界面与可用功能可能随版本变化，请以已安装插件及商店中的最新信息为准。
+    </p>
+  </article>
+</Base>

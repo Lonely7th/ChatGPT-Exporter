@@ -1,0 +1,204 @@
+---
+import '../styles/global.css';
+import { SITE } from '../data/site';
+import Icon from '../components/Icon.astro';
+interface Props {
+  title?: string;
+  description?: string;
+  schema?: Record<string, unknown>;
+  noindex?: boolean;
+}
+const {
+  title = 'ChatGPT Exporter 中文站｜ChatGPT 对话导出 Word、PDF、Excel',
+  description = 'ChatGPT Exporter 中文站：将 ChatGPT 对话导出为 Word、PDF 和 Excel，支持公式、表格与批量导出。查看使用教程、导出示例和安装指南。',
+  schema,
+  noindex = false,
+} = Astro.props;
+const path = Astro.url.pathname;
+const canonical = new URL(path, SITE.origin).href;
+const data = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE.name,
+    url: SITE.origin,
+    inLanguage: 'zh-CN',
+  },
+  ...(schema ? [schema] : []),
+];
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#137c66" />
+    <meta
+      name="robots"
+      content={
+        noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'
+      }
+    />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={`${SITE.origin}/social.png`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${SITE.origin}/social.png`} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(data).replace(/</g, '\\u003c')}
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">
+      跳到正文
+    </a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="/" aria-label="ChatGPT Exporter 中文站首页">
+          <span class="brand-symbol">
+            <Icon name="download" size={23} />
+          </span>
+          <span>
+            ChatGPT Exporter<span class="brand-tag">中文站</span>
+          </span>
+        </a>
+        <button
+          class="menu-toggle"
+          aria-label="打开导航"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav id="primary-nav" aria-label="主导航">
+          <a
+            href="/features/chatgpt-to-word/"
+            aria-current={path.startsWith('/features') ? 'page' : undefined}
+          >
+            功能介绍
+          </a>
+          <a
+            href="/examples/"
+            aria-current={path === '/examples/' ? 'page' : undefined}
+          >
+            导出示例
+          </a>
+          <a
+            href="/guides/"
+            aria-current={path.startsWith('/guides') ? 'page' : undefined}
+          >
+            使用教程
+          </a>
+          <a href="/faq/" aria-current={path === '/faq/' ? 'page' : undefined}>
+            常见问题
+          </a>
+          <a class="nav-install" href="/install/">
+            安装插件 <Icon name="arrow" size={15} />
+          </a>
+        </nav>
+      </div>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <a href="/" class="brand">
+            <span class="brand-symbol">
+              <Icon name="download" size={23} />
+            </span>
+            <span>
+              ChatGPT Exporter<span class="brand-tag">中文站</span>
+            </span>
+          </a>
+          <p>让有价值的对话，成为可用的文档。</p>
+          <p class="small">中文服务，不限对话语言。</p>
+        </div>
+        <div>
+          <h2>产品</h2>
+          <a href="/features/chatgpt-to-word/">导出 Word</a>
+          <a href="/features/chatgpt-to-pdf/">导出 PDF</a>
+          <a href="/features/chatgpt-to-excel/">导出 Excel</a>
+          <a href="/features/batch-export/">批量导出</a>
+        </div>
+        <div>
+          <h2>支持</h2>
+          <a href="/install/">安装指南</a>
+          <a href="/guides/">使用教程</a>
+          <a href="/faq/">常见问题</a>
+          <a href="/changelog/">更新记录</a>
+        </div>
+        <div>
+          <h2>关于</h2>
+          <a href="/about/">关于与联系</a>
+          <a href="/privacy/">隐私说明</a>
+          <a href="/terms/">使用条款</a>
+          <a
+            href={SITE.store}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-store-link
+            data-location="footer"
+          >
+            Chrome 应用商店 ↗
+          </a>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <span>
+          © {new Date(SITE.updated).getFullYear()} ChatGPT Exporter 中文站
+        </span>
+        <span>独立开发的扩展工具，与 OpenAI 无隶属或背书关系。</span>
+      </div>
+    </footer>
+    <script>
+      const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+      toggle?.addEventListener('click', () => {
+        const open = toggle.getAttribute('aria-expanded') !== 'true';
+        toggle.setAttribute('aria-expanded', String(open));
+        document
+          .querySelector('#primary-nav')
+          ?.classList.toggle('is-open', open);
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          toggle?.setAttribute('aria-expanded', 'false');
+          document.querySelector('#primary-nav')?.classList.remove('is-open');
+        }
+      });
+      // No analytics provider is loaded by default. Integrations may listen to this event.
+      document
+        .querySelectorAll<HTMLAnchorElement>('[data-store-link]')
+        .forEach((link) =>
+          link.addEventListener('click', () => {
+            window.dispatchEvent(
+              new CustomEvent('exporter:analytics', {
+                detail: {
+                  event: 'store_click',
+                  page_path: location.pathname,
+                  button_location: link.dataset.location || 'page',
+                },
+              }),
+            );
+          }),
+        );
+    </script>
+  </body>
+</html>

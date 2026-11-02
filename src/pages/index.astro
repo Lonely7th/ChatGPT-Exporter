@@ -1,0 +1,273 @@
+---
+import Base from '../layouts/Base.astro';
+import Preview from '../components/Preview.astro';
+import Icon from '../components/Icon.astro';
+import StoreLink from '../components/StoreLink.astro';
+import { features, faqs, SITE } from '../data/site';
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: SITE.name,
+  url: SITE.origin,
+  downloadUrl: SITE.store,
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: '桌面 Chrome 浏览器',
+  description:
+    '将 ChatGPT 对话导出为 Word、PDF、Excel，支持当前对话内多条消息的批量导出。',
+  inLanguage: 'zh-CN',
+};
+---
+
+<Base schema={schema}>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">
+          <span class="status-dot"></span> ChatGPT Exporter 中文站
+        </div>
+        <h1>
+          让对话的价值，
+          <br />
+          留在
+          <span class="accent-word">
+            文档里
+            <svg viewBox="0 0 260 15" aria-hidden="true">
+              <path d="M3 9Q130-3 255 7" />
+            </svg>
+          </span>
+          。
+        </h1>
+        <p class="hero-description">
+          将 ChatGPT 对话导出为 <strong>Word、PDF 和 Excel</strong>。
+          <br class="desktop-break" />
+          保留公式、表格与排版，让灵感走进工作和学习。
+        </p>
+        <div class="hero-actions">
+          <StoreLink label="安装 Chrome 插件" location="hero" />
+          <a class="button button-light" href="/examples/">
+            查看导出示例 <Icon name="arrow" size={17} />
+          </a>
+        </div>
+        <div class="hero-meta">
+          <span>
+            <Icon name="check" size={15} />
+            支持批量导出
+          </span>
+          <span>
+            <Icon name="globe" size={15} />
+            中文服务，不限对话语言
+          </span>
+        </div>
+        <p class="mobile-hint">请在电脑上的 Chrome 浏览器中安装与使用。</p>
+      </div>
+      <Preview />
+    </div>
+    <div class="container hero-bottom">
+      <span>从 ChatGPT，走进你的日常工作</span>
+      <div>
+        <span>
+          <b class="file-letter blue">W</b> Word 文档
+        </span>
+        <i></i>
+        <span>
+          <b class="file-letter red">P</b> PDF 文件
+        </span>
+        <i></i>
+        <span>
+          <b class="file-letter green">X</b> Excel 表格
+        </span>
+      </div>
+    </div>
+  </section>
+  <section class="section container" id="features">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">为内容找到合适的去处</p>
+        <h2>一次好对话，不止一种用法。</h2>
+      </div>
+      <p>
+        从可编辑的报告，到随时查阅的资料，
+        <br />
+        按需要选择合适的导出格式。
+      </p>
+    </div>
+    <div class="feature-grid">
+      {features.map((f, i) => (
+        <a class={`feature-card ${f.color}`} href={`/features/${f.slug}/`}>
+          <div class="feature-card-top">
+            <span class={`format-icon ${f.color}`}>
+              {i === 3 ? (
+                <Icon name="layers" size={25} />
+              ) : (
+                f.format.slice(0, 1)
+              )}
+            </span>
+            <span class="file-extension">{f.ext}</span>
+          </div>
+          <h3>
+            {f.format}
+            {i === 3 ? '' : ' 导出'}
+          </h3>
+          <p>{f.short}</p>
+          <span class="card-link">
+            了解功能 <Icon name="arrow" size={17} />
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+  <section class="detail-section">
+    <div class="container detail-grid">
+      <div class="detail-visual">
+        <div class="visual-label">
+          <span class="status-dot"></span> KEEP THE STRUCTURE
+        </div>
+        <div class="formula-note">
+          <span>数学推导</span>
+          <div>
+            ∫<sub>0</sub>
+            <sup>1</sup> x<sup>2</sup> dx ={' '}
+            <span class="fraction">
+              <span>1</span>
+              <span>3</span>
+            </span>
+          </div>
+          <small>行内公式 · 块级公式 · LaTeX</small>
+        </div>
+        <div class="code-note">
+          <span class="code-dot"></span> study_notes.py
+          <pre><code><span>def</span> keep_learning():<br/>    ideas = <em>"a good conversation"</em><br/>    <span>return</span> ideas</code></pre>
+        </div>
+        <div class="visual-footnote">内容排版示意</div>
+      </div>
+      <div class="detail-copy">
+        <p class="eyebrow">不只是复制和粘贴</p>
+        <h2>
+          把时间花在内容上，
+          <br />
+          少一点反复排版。
+        </h2>
+        <p>
+          公式、表格、代码块，往往才是对话中最值得留下的部分。选择合适的导出方式，让知识更方便地编辑、归档与分享。
+        </p>
+        <ul class="check-list">
+          <li>
+            <Icon name="check" />
+            数学公式：针对 LaTeX 内容进行转换适配
+          </li>
+          <li>
+            <Icon name="check" />
+            结构化表格：便于继续整理与分析
+          </li>
+          <li>
+            <Icon name="check" />
+            多条消息：按需选择，合并成文档
+          </li>
+        </ul>
+        <a class="text-link" href="/guides/math-equations-to-word/">
+          查看公式导出指南 <Icon name="arrow" size={17} />
+        </a>
+      </div>
+    </div>
+  </section>
+  <section class="section container">
+    <div class="section-heading centered">
+      <p class="eyebrow">简单开始</p>
+      <h2>三步，让好内容留下来。</h2>
+    </div>
+    <div class="steps-grid">
+      {[
+        {
+          n: '01',
+          title: '安装插件',
+          text: '在桌面 Chrome 应用商店安装 ChatGPT Exporter，并启用站点访问权限。',
+        },
+        {
+          n: '02',
+          title: '打开对话',
+          text: '进入 ChatGPT 对话，找到导出入口；需要时按提示登录并选择内容。',
+        },
+        {
+          n: '03',
+          title: '选择格式，导出',
+          text: '按用途选择 Word、PDF 或 Excel，下载后核对文档效果。',
+        },
+      ].map((s) => (
+        <div class="step">
+          <span>{s.n}</span>
+          <h3>{s.title}</h3>
+          <p>{s.text}</p>
+        </div>
+      ))}
+    </div>
+    <div class="center">
+      <a href="/install/" class="text-link">
+        查看完整安装教程 <Icon name="arrow" size={17} />
+      </a>
+    </div>
+  </section>
+  <section class="use-section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">工作与学习，都有好去处</p>
+          <h2>你负责思考，文档接住成果。</h2>
+        </div>
+      </div>
+      <div class="use-grid">
+        <article>
+          <span>01 / 学习与教学</span>
+          <h3>推导过程，变成复习资料。</h3>
+          <p>整理知识问答、解题过程与教学笔记，保留值得反复阅读的内容。</p>
+          <a href="/guides/math-equations-to-word/">公式导出指南 ↗</a>
+        </article>
+        <article>
+          <span>02 / 办公与协作</span>
+          <h3>讨论结果，变成工作文档。</h3>
+          <p>把项目思路、方案和结构化清单整理为便于继续编辑的文件。</p>
+          <a href="/guides/chatgpt-to-word/">Word 导出教程 ↗</a>
+        </article>
+        <article>
+          <span>03 / 数据与分析</span>
+          <h3>一份表格，开始下一步分析。</h3>
+          <p>将对话中的对比表和数据清单导出，在电子表格中继续处理。</p>
+          <a href="/guides/chatgpt-to-excel/">Excel 导出教程 ↗</a>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section class="section container faq-section">
+    <div>
+      <p class="eyebrow">开始之前</p>
+      <h2>你可能还想了解。</h2>
+      <p>关于格式、使用条件与数据处理。</p>
+      <a href="/faq/" class="text-link">
+        查看全部常见问题 <Icon name="arrow" size={17} />
+      </a>
+    </div>
+    <div class="faq-list">
+      {faqs
+        .slice(0, 3)
+        .concat(faqs[5])
+        .map((f) => (
+          <details>
+            <summary>
+              {f.q}
+              <Icon name="plus" size={18} />
+            </summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+    </div>
+  </section>
+  <section class="container bottom-cta">
+    <span class="cta-doodle" aria-hidden="true">
+      ↗
+    </span>
+    <p class="eyebrow">从下一次有价值的对话开始</p>
+    <h2>好内容，值得好好保存。</h2>
+    <p>安装 ChatGPT Exporter，把工作与学习中的收获带走。</p>
+    <StoreLink label="前往商店安装插件" location="bottom-cta" />
+    <small>桌面 Chrome · 转换需联网 · 额度与权益以插件内提示为准</small>
+  </section>
+</Base>

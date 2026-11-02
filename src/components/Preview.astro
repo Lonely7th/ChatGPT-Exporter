@@ -1,0 +1,226 @@
+---
+import Icon from './Icon.astro';
+---
+
+<div class="preview-scene" data-preview>
+  <div class="preview-orbit"></div>
+  <div class="source-note">
+    <span class="source-dot"></span> ChatGPT 对话{' '}
+    <span class="note-badge">内容示意</span>
+    <div class="source-question">帮我整理这次讨论的重点</div>
+    <div class="source-line"></div>
+    <div class="source-line short"></div>
+    <div class="source-tags">
+      <span>公式</span>
+      <span>表格</span>
+      <span>代码</span>
+    </div>
+  </div>
+  <div class="editor-window">
+    <div class="window-top">
+      <div class="window-dots">
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+      <span>把对话，变成文档</span>
+      <Icon name="shield" size={14} />
+    </div>
+    <div class="format-tabs" role="tablist" aria-label="导出格式示意">
+      <button
+        type="button"
+        role="tab"
+        id="tab-word"
+        aria-controls="panel-word"
+        aria-selected="true"
+        data-format="word"
+      >
+        <span class="format-mini blue">W</span>Word
+      </button>
+      <button
+        type="button"
+        role="tab"
+        id="tab-pdf"
+        aria-controls="panel-pdf"
+        aria-selected="false"
+        tabindex="-1"
+        data-format="pdf"
+      >
+        <span class="format-mini red">P</span>PDF
+      </button>
+      <button
+        type="button"
+        role="tab"
+        id="tab-excel"
+        aria-controls="panel-excel"
+        aria-selected="false"
+        tabindex="-1"
+        data-format="excel"
+      >
+        <span class="format-mini green">X</span>Excel
+      </button>
+    </div>
+    <div
+      class="document-sheet"
+      id="panel-word"
+      role="tabpanel"
+      aria-labelledby="tab-word"
+      tabindex="0"
+    >
+      <span class="document-kicker">LEARNING NOTES / 学习笔记</span>
+      <h3>从一个问题，到一份好文档。</h3>
+      <p>保留思考的过程，也保留清晰的表达。</p>
+      <h4>01 · 数学公式</h4>
+      <div class="math-block">
+        E = mc<sup>2</sup>
+        <span>让推导清楚呈现</span>
+      </div>
+      <h4>02 · 结构化表格</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>内容类型</th>
+            <th>整理方式</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>学习与研究</td>
+            <td>公式 · 推导 · 笔记</td>
+          </tr>
+          <tr>
+            <td>工作与协作</td>
+            <td>报告 · 表格 · 方案</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="sheet-bottom">
+        <span>ChatGPT Exporter</span>
+        <span>01</span>
+      </div>
+    </div>
+    <div
+      class="document-sheet pdf-sheet"
+      id="panel-pdf"
+      role="tabpanel"
+      aria-labelledby="tab-pdf"
+      tabindex="0"
+      hidden
+    >
+      <span class="document-kicker">PDF / 阅读与分享</span>
+      <h3>让一次讨论，随时可读。</h3>
+      <p>整理成固定版式，方便归档与打印。</p>
+      <h4>讨论摘要</h4>
+      <p>提出问题 → 展开讨论 → 整理结论</p>
+      <div class="math-block">
+        f(x) = x<sup>2</sup> + 2x + 1
+      </div>
+      <h4>分享前检查</h4>
+      <ul>
+        <li>公式与特殊符号是否完整</li>
+        <li>表格与段落分页是否合适</li>
+        <li>分享范围是否符合内容要求</li>
+      </ul>
+      <div class="sheet-bottom">
+        <span>示意排版 · 非实际导出文件</span>
+        <span>01</span>
+      </div>
+    </div>
+    <div
+      class="document-sheet excel-sheet"
+      id="panel-excel"
+      role="tabpanel"
+      aria-labelledby="tab-excel"
+      tabindex="0"
+      hidden
+    >
+      <span class="document-kicker">EXCEL / 表格与清单</span>
+      <h3>数据清晰，下一步更轻松。</h3>
+      <p>让结构化内容进入电子表格。</p>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>A</th>
+            <th>B</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>任务</td>
+            <td>状态</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>整理需求</td>
+            <td>已完成</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>核对数据</td>
+            <td>进行中</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>分享结果</td>
+            <td>待处理</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="excel-selected">
+        B3 <span>进行中</span>
+      </div>
+      <div class="sheet-bottom">
+        <span>示意数据 · 非实际导出文件</span>
+        <span>Sheet 1</span>
+      </div>
+    </div>
+  </div>
+  <div class="export-tag">
+    <span class="success-symbol">
+      <Icon name="check" size={17} />
+    </span>
+    <div>
+      <strong>从对话，到文档</strong>
+      <small>Word · PDF · Excel</small>
+    </div>
+    <Icon name="download" size={19} />
+  </div>
+  <p class="preview-caption">排版与交互示意，实际效果以插件导出文件为准</p>
+</div>
+<script>
+  document
+    .querySelectorAll<HTMLElement>('[data-preview]')
+    .forEach((preview) => {
+      const tabs = Array.from(
+        preview.querySelectorAll<HTMLButtonElement>('[role="tab"]'),
+      );
+      const select = (tab: HTMLButtonElement) => {
+        tabs.forEach((t) => {
+          t.setAttribute('aria-selected', String(t === tab));
+          t.tabIndex = t === tab ? 0 : -1;
+        });
+        preview
+          .querySelectorAll<HTMLElement>('[role="tabpanel"]')
+          .forEach((panel) => {
+            panel.hidden = panel.id !== tab.getAttribute('aria-controls');
+          });
+      };
+      tabs.forEach((tab, i) => {
+        tab.addEventListener('click', () => select(tab));
+        tab.addEventListener('keydown', (e) => {
+          let next = i;
+          if (e.key === 'ArrowRight') next = (i + 1) % tabs.length;
+          else if (e.key === 'ArrowLeft')
+            next = (i + tabs.length - 1) % tabs.length;
+          else if (e.key === 'Home') next = 0;
+          else if (e.key === 'End') next = tabs.length - 1;
+          else return;
+          e.preventDefault();
+          select(tabs[next]);
+          tabs[next].focus();
+        });
+      });
+    });
+</script>

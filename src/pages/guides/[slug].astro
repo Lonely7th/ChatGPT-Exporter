@@ -1,0 +1,76 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Aside from '../../components/Aside.astro';
+import { SITE } from '../../data/site';
+export async function getStaticPaths() {
+  return (await getCollection('guides')).map((guide) => ({
+    params: { slug: guide.id },
+    props: { guide },
+  }));
+}
+const { guide } = Astro.props;
+const { Content, headings } = await render(guide);
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: guide.data.title,
+  description: guide.data.description,
+  dateModified: guide.data.updated,
+  author: {
+    '@type': 'Organization',
+    name: SITE.name,
+    url: `${SITE.origin}/about/`,
+  },
+  mainEntityOfPage: `${SITE.origin}/guides/${guide.id}/`,
+  inLanguage: 'zh-CN',
+};
+---
+
+<Base
+  title={`${guide.data.title}｜${SITE.name}`}
+  description={guide.data.description}
+  schema={schema}
+>
+  <PageHero
+    title={guide.data.title}
+    description={guide.data.description}
+    eyebrow={guide.data.category}
+    parent="使用教程"
+    parentHref="/guides/"
+  >
+    <div class="article-meta">
+      <span>作者：ChatGPT Exporter 中文站</span>
+      <time datetime={guide.data.updated}>更新：{guide.data.updated}</time>
+      <span>{guide.data.minutes} 分钟阅读</span>
+    </div>
+  </PageHero>
+  <div class="container article-layout">
+    <article class="prose">
+      {headings.length > 0 && (
+        <div class="notice">
+          <strong>本篇内容</strong>
+          <ul>
+            {headings
+              .filter((h) => h.depth === 2)
+              .map((h) => (
+                <li>
+                  <a href={`#${h.slug}`}>{h.text}</a>
+                </li>
+              ))}
+          </ul>
+        </div>
+      )}
+      <Content />
+      <div class="inline-cta">
+        <h3>继续了解</h3>
+        <p>
+          <a href="/install/">安装教程</a> · <a href="/examples/">测试素材</a> ·{' '}
+          <a href="/guides/">全部教程</a>
+        </p>
+      </div>
+    </article>
+    <Aside />
+  </div>
+</Base>

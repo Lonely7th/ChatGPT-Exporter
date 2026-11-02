@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import { SITE } from '../../data/site';
+const guides = (await getCollection('guides')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<Base
+  title={`ChatGPT 导出教程与问题排查｜${SITE.name}`}
+  description="了解如何导出 ChatGPT 对话为 Word、PDF、Excel，保存数学公式、批量整理消息，并排查常见排版问题。"
+>
+  <PageHero
+    title="把对话用好，从这里开始。"
+    description="从第一次导出，到公式、表格与批量整理，按你的任务找到操作方法。"
+    eyebrow="使用教程"
+  />
+  <div class="container guide-grid">
+    {guides.map((guide) => (
+      <a class="guide-card" href={`/guides/${guide.id}/`}>
+        <span class="category">{guide.data.category}</span>
+        <h2>{guide.data.title}</h2>
+        <p>{guide.data.description}</p>
+        <span>{guide.data.minutes} 分钟阅读 · 阅读教程 ↗</span>
+      </a>
+    ))}
+  </div>
+</Base>

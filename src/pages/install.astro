@@ -1,0 +1,109 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Aside from '../components/Aside.astro';
+import StoreLink from '../components/StoreLink.astro';
+import { SITE } from '../data/site';
+---
+
+<Base
+  title={`安装与使用教程｜${SITE.name}`}
+  description="在桌面 Chrome 浏览器中安装 ChatGPT Exporter，启用插件、打开 ChatGPT 对话，完成第一次 Word、PDF 或 Excel 导出。"
+>
+  <PageHero
+    title="安装一次，把好对话留下来。"
+    description="在桌面 Chrome 浏览器中安装 ChatGPT Exporter，跟随下面的步骤完成第一次导出。"
+    eyebrow="安装与首次使用"
+  >
+    <StoreLink label="打开 Chrome 应用商店" location="install-hero" />
+  </PageHero>
+  <div class="container article-layout">
+    <article class="prose">
+      <section class="install-step">
+        <h2>
+          <span class="number">1</span>在商店中安装插件
+        </h2>
+        <p>
+          打开上方 Chrome 应用商店入口，确认产品名称为“ChatGPT Exporter –
+          ChatGPT对话批量导出”，并核对扩展 ID：
+        </p>
+        <p>
+          <code>hpcgnbhdkbajengeapopcckejikkmhcb</code>
+        </p>
+        <p>
+          点击商店中的安装按钮，查看浏览器权限提示后确认安装。其他同名扩展可能属于不同开发者，请以本页链接和
+          ID 为准。
+        </p>
+      </section>
+      <section class="install-step">
+        <h2>
+          <span class="number">2</span>启用插件并打开对话
+        </h2>
+        <p>
+          通过浏览器工具栏的扩展菜单找到插件，确认已启用。根据浏览器设置，为插件授予
+          chatgpt.com 的站点访问权限。
+        </p>
+        <p>
+          进入{' '}
+          <a
+            href="https://chatgpt.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            chatgpt.com
+          </a>{' '}
+          并打开需要整理的对话。安装前已经打开的页面请刷新一次。
+        </p>
+      </section>
+      <section class="install-step">
+        <h2>
+          <span class="number">3</span>选择内容与文件格式
+        </h2>
+        <p>
+          等待回答完整生成，找到回答附近的导出工具，选择 Word、PDF 或
+          Excel。需要合并多条消息时，使用当前对话内的“批量导出”入口。
+        </p>
+        <p>
+          转换流程可能要求登录，并检查可用额度或会员权益。请按插件实际提示操作，价格和权益以界面展示为准。
+        </p>
+      </section>
+      <section class="install-step">
+        <h2>
+          <span class="number">4</span>下载并检查文件
+        </h2>
+        <p>
+          等待转换完成并下载文件，使用对应软件打开，检查公式、表格、消息顺序和分页。首次使用建议先导出一小段公开内容，确认效果符合需求。
+        </p>
+        <p>
+          <a href="/examples/">获取测试素材</a>，或阅读
+          <a href="/guides/export-troubleshooting/">导出问题排查指南</a>。
+        </p>
+      </section>
+      <h2>权限与联网说明</h2>
+      <div class="permission-list">
+        <div>
+          <h3>站点内容</h3>
+          <p>插件在 ChatGPT 页面中提供内容选择和导出入口。</p>
+        </div>
+        <div>
+          <h3>下载与存储</h3>
+          <p>用于下载生成文件及保存插件相关状态和偏好。</p>
+        </div>
+        <div>
+          <h3>剪贴板</h3>
+          <p>插件声明了剪贴板读取权限，实际操作以浏览器和插件提示为准。</p>
+        </div>
+        <div>
+          <h3>在线转换</h3>
+          <p>转换会调用在线服务，所选内容可能发送至服务端处理。</p>
+        </div>
+      </div>
+      <p class="notice">
+        本网站介绍桌面 Chrome 版本。移动端、其他浏览器与其他 AI
+        平台的支持情况，请以对应产品实际说明为准。处理敏感材料前请阅读
+        <a href="/privacy/">隐私说明</a>。
+      </p>
+    </article>
+    <Aside />
+  </div>
+</Base>

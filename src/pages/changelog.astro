@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { SITE } from '../data/site';
+---
+
+<Base
+  title={`网站更新记录与插件版本入口｜${SITE.name}`}
+  description="查看中文站内容更新，了解如何确认插件的当前版本与可用功能。"
+>
+  <PageHero
+    title="持续整理，持续完善。"
+    description="记录中文站的内容更新，帮助你找到对应版本的产品信息。"
+    eyebrow="更新记录"
+  />
+  <article class="container narrow prose">
+    <h2>2026-11-02 · 中文站首版</h2>
+    <ul>
+      <li>建立 Word、PDF、Excel 和当前对话批量导出的功能介绍。</li>
+      <li>提供安装教程、六篇操作指南与问题排查说明。</li>
+      <li>提供公开的公式、代码、流程图和表格输入测试素材。</li>
+      <li>明确中文站语言定位、在线转换条件与隐私说明。</li>
+    </ul>
+    <h2>如何查看插件版本？</h2>
+    <p>
+      打开浏览器的扩展管理页面，在 ChatGPT Exporter
+      的详细信息中查看已安装版本。商店中的版本与本机版本可能因更新进度不同而不一致。
+    </p>
+    <p>
+      插件的最新发布版本、更新时间和发布说明请以
+      <a
+        href={SITE.store}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-store-link
+        data-location="changelog"
+      >
+        Chrome 应用商店页面
+      </a>
+      为准。本页不将网站内容更新等同于插件版本发布。
+    </p>
+  </article>
+</Base>

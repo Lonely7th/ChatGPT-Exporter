@@ -1,0 +1,30 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  eyebrow?: string;
+  parent?: string;
+  parentHref?: string;
+}
+const { title, description, eyebrow, parent, parentHref } = Astro.props;
+---
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumbs" aria-label="面包屑">
+      <a href="/">首页</a>
+      <span>/</span>
+      {parent && (
+        <>
+          <a href={parentHref}>{parent}</a>
+          <span>/</span>
+        </>
+      )}
+      <span aria-current="page">{title}</span>
+    </div>
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h1>{title}</h1>
+    {description && <p class="lead">{description}</p>}
+    <slot />
+  </div>
+</section>

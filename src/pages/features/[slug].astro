@@ -1,0 +1,108 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Aside from '../../components/Aside.astro';
+import StoreLink from '../../components/StoreLink.astro';
+import { features, SITE } from '../../data/site';
+export function getStaticPaths() {
+  return features.map((feature) => ({
+    params: { slug: feature.slug },
+    props: { feature },
+  }));
+}
+const { feature: f } = Astro.props;
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '首页', item: SITE.origin },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: f.title,
+      item: `${SITE.origin}/features/${f.slug}/`,
+    },
+  ],
+};
+---
+
+<Base
+  title={`${f.title}｜${SITE.name}`}
+  description={f.description}
+  schema={schema}
+>
+  <PageHero
+    title={f.title}
+    description={f.description}
+    eyebrow={`CHATGPT EXPORTER / ${f.format.toUpperCase()}`}
+  >
+    <StoreLink label="安装插件，开始导出" location={`feature-${f.slug}`} />
+  </PageHero>
+  <div class="container">
+    <nav class="feature-nav" aria-label="导出功能">
+      {features.map((item) => (
+        <a
+          href={`/features/${item.slug}/`}
+          aria-current={item.slug === f.slug ? 'page' : undefined}
+        >
+          {item.format}
+        </a>
+      ))}
+    </nav>
+    <div class="article-layout">
+      <article class="prose">
+        <h2>{f.short}</h2>
+        <p>
+          {f.description}
+          “中文站”提供中文说明与服务，不限定导出内容使用中文；英文和中英混排内容也可以按需整理。
+        </p>
+        <h2>适合哪些内容？</h2>
+        <ul>
+          {f.points.map((point) => (
+            <li>{point}</li>
+          ))}
+        </ul>
+        <h2>如何使用？</h2>
+        <ol>
+          <li>
+            在桌面 Chrome 浏览器安装插件，打开 chatgpt.com 中需要导出的对话。
+          </li>
+          <li>
+            {f.slug === 'batch-export'
+              ? '点击“批量导出”，在当前对话中选择多条需要合并的消息。'
+              : '找到回答旁的导出工具，选择需要保留的内容。'}
+          </li>
+          <li>
+            {f.slug === 'batch-export'
+              ? '选择 Word 或 Markdown，按提示登录并等待生成文件。'
+              : `选择 ${f.format} 格式，按插件提示完成必要的登录与转换。`}
+          </li>
+          <li>下载文件，在对应软件中打开，并核对公式、表格与内容顺序。</li>
+        </ol>
+        <p>
+          <a href={`/guides/${f.guide}/`}>阅读完整的{f.format}教程 →</a>
+        </p>
+        <h2>使用前需要了解</h2>
+        <div class="notice">{f.boundary}</div>
+        <p>
+          转换会使用在线服务，并可能发送所选对话内容。登录、可用额度和会员权益以插件界面为准。涉及敏感信息时，请先阅读
+          <a href="/privacy/">隐私说明</a>。
+        </p>
+        <h2>建议先做一次小样本测试</h2>
+        <p>
+          选取包含公式、表格或代码的一段代表性回答，先导出并核对，再整理较长对话。特别是需要交付、提交或打印的内容，请检查最终文件。
+        </p>
+        <p>
+          <a href="/examples/">获取公开测试素材</a>，或查看
+          <a href="/guides/export-troubleshooting/">格式异常排查指南</a>。
+        </p>
+        <div class="inline-cta">
+          <h3>准备好把对话保存下来了吗？</h3>
+          <p>从一段对话开始，找到适合你的导出格式。</p>
+          <StoreLink label="前往 Chrome 应用商店" location="feature-bottom" />
+        </div>
+      </article>
+      <Aside />
+    </div>
+  </div>
+</Base>
