@@ -6,6 +6,40 @@ export const SITE = {
   email: '872751451@qq.com',
   updated: '2026-11-02',
 };
+export const browsers = [
+  {
+    id: 'chrome',
+    name: 'Chrome',
+    label: 'Chrome 应用商店',
+    href: SITE.store,
+    description: '前往 Chrome 应用商店安装。',
+    badge: 'C',
+  },
+  {
+    id: 'edge',
+    name: 'Edge',
+    label: 'Microsoft Edge 加载项',
+    href: 'https://microsoftedge.microsoft.com/addons/detail/chatgpt-exporter-%E2%80%93-chatgp/dmljnfinhbjeaooocieckmjbajlcgblg',
+    description: '前往 Microsoft Edge 加载项安装。',
+    badge: 'e',
+  },
+  {
+    id: '360',
+    name: '360 浏览器',
+    label: '360 浏览器安装入口',
+    href: 'https://chatgpt.aiwhaler.com/index/',
+    description: '打开安装页面，按页面说明完成安装。',
+    badge: '360',
+  },
+  {
+    id: 'firefox',
+    name: 'Firefox（火狐）',
+    label: 'Firefox 附加组件',
+    href: 'https://addons.mozilla.org/zh-CN/firefox/addon/chatgpt-exporter-ai2word/',
+    description: '前往 Firefox 附加组件页面安装。',
+    badge: 'F',
+  },
+] as const;
 export const features = [
   {
     slug: 'chatgpt-to-word',
@@ -110,8 +144,8 @@ export const faqs = [
     a: '导出转换需要连接在线服务，所选内容可能被发送至转换服务生成文件，因此不能视为纯本地处理工具。处理敏感内容前，请先阅读隐私说明和插件当前的隐私政策。',
   },
   {
-    q: '支持手机、其他浏览器或其他 AI 平台吗？',
-    a: '本网站的安装入口对应桌面 Chrome 应用商店版本，主要用于 chatgpt.com。其他浏览器、移动端及其他 AI 平台不在本站当前安装教程的验证范围内。',
+    q: '支持哪些浏览器？可以在手机上使用吗？',
+    a: '插件支持桌面端 Chrome、Edge、360 浏览器和 Firefox（火狐），安装页提供对应入口。主要用于 chatgpt.com；请按所用浏览器选择版本。移动端和其他 AI 平台的支持情况请以对应产品说明为准。',
   },
   {
     q: '安装后看不到导出按钮怎么办？',

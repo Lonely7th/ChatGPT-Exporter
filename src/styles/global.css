@@ -1477,3 +1477,133 @@ ul {
     animation: none !important;
   }
 }
+
+/* Shared browser download entry points */
+.brand-symbol img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 3px;
+}
+.browser-downloads {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+.browser-download {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 22px 18px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: white;
+  transition:
+    border-color 0.2s,
+    transform 0.2s;
+  min-width: 0;
+}
+.browser-download:hover {
+  border-color: var(--green);
+  transform: translateY(-2px);
+}
+.browser-download > span:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+}
+.browser-download strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+}
+.browser-download small {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.browser-download > svg {
+  color: var(--green);
+}
+.browser-badge {
+  display: grid;
+  place-items: center;
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #eef5ed;
+  color: var(--green);
+  font-weight: 700;
+  font-size: 17px;
+}
+.browser-edge .browser-badge {
+  background: #ebf7fa;
+  color: #117c9b;
+}
+.browser-360 .browser-badge {
+  background: #f0f7e7;
+  color: #5d8a2a;
+  font-size: 11px;
+}
+.browser-firefox .browser-badge {
+  background: #fff1e9;
+  color: #b85a20;
+}
+.browser-downloads.compact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 18px;
+}
+.compact .browser-download {
+  padding: 5px 9px;
+  gap: 5px;
+  border-radius: 5px;
+  background: transparent;
+}
+.compact .browser-badge {
+  display: none;
+}
+.compact .browser-download strong {
+  font-size: 10px;
+  font-weight: 500;
+}
+.compact .browser-download > svg {
+  width: 11px;
+  height: 11px;
+}
+.browser-install-section {
+  padding-block: 36px;
+  scroll-margin-top: 24px;
+  border-bottom: 1px solid var(--line);
+}
+.browser-install-section h2 {
+  font-size: 26px;
+  margin-bottom: 14px;
+}
+.browser-install-section > p {
+  font-size: 13px;
+  margin-bottom: 23px;
+}
+@media (max-width: 1000px) {
+  .browser-downloads:not(.compact) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 800px) {
+  .browser-downloads.compact {
+    justify-content: center;
+  }
+}
+@media (max-width: 480px) {
+  .browser-downloads:not(.compact) {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .browser-download {
+    padding: 17px;
+  }
+}

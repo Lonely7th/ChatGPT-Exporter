@@ -2,37 +2,49 @@
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import Aside from '../components/Aside.astro';
-import StoreLink from '../components/StoreLink.astro';
+import BrowserDownloads from '../components/BrowserDownloads.astro';
 import { SITE } from '../data/site';
 ---
 
 <Base
   title={`安装与使用教程｜${SITE.name}`}
-  description="在桌面 Chrome 浏览器中安装 ChatGPT Exporter，启用插件、打开 ChatGPT 对话，完成第一次 Word、PDF 或 Excel 导出。"
+  description="选择 Chrome、Edge、360 浏览器或 Firefox 版本安装 ChatGPT Exporter，查看安装入口与首次导出教程。"
 >
   <PageHero
     title="安装一次，把好对话留下来。"
-    description="在桌面 Chrome 浏览器中安装 ChatGPT Exporter，跟随下面的步骤完成第一次导出。"
+    description="支持 Chrome、Edge、360 浏览器与 Firefox（火狐）。选择你使用的桌面浏览器，安装后完成第一次导出。"
     eyebrow="安装与首次使用"
+  />
+  <section
+    id="browsers"
+    class="container browser-install-section"
+    aria-labelledby="browser-heading"
   >
-    <StoreLink label="打开 Chrome 应用商店" location="install-hero" />
-  </PageHero>
+    <h2 id="browser-heading">选择你的浏览器</h2>
+    <p>
+      请使用对应浏览器打开安装入口。Chrome、Edge 和 Firefox
+      前往各自的应用商店；360 浏览器请按安装页面说明操作。
+    </p>
+    <BrowserDownloads location="install-browser" />
+  </section>
   <div class="container article-layout">
     <article class="prose">
       <section class="install-step">
         <h2>
-          <span class="number">1</span>在商店中安装插件
+          <span class="number">1</span>安装对应浏览器版本
         </h2>
         <p>
-          打开上方 Chrome 应用商店入口，确认产品名称为“ChatGPT Exporter –
-          ChatGPT对话批量导出”，并核对扩展 ID：
+          在上方选择 Chrome、Edge、360 浏览器或
+          Firefox，打开对应安装入口，核对插件名称与页面信息。Chrome 版本的扩展
+          ID 为：
         </p>
         <p>
           <code>hpcgnbhdkbajengeapopcckejikkmhcb</code>
         </p>
         <p>
-          点击商店中的安装按钮，查看浏览器权限提示后确认安装。其他同名扩展可能属于不同开发者，请以本页链接和
-          ID 为准。
+          Chrome、Edge 和 Firefox 请按应用商店提示安装；360
+          浏览器请按对应页面的说明安装。不同浏览器版本的扩展 ID
+          可能不同，请以本页对应入口为准，并查看浏览器权限提示。
         </p>
       </section>
       <section class="install-step">
@@ -99,8 +111,8 @@ import { SITE } from '../data/site';
         </div>
       </div>
       <p class="notice">
-        本网站介绍桌面 Chrome 版本。移动端、其他浏览器与其他 AI
-        平台的支持情况，请以对应产品实际说明为准。处理敏感材料前请阅读
+        本站提供桌面端 Chrome、Edge、360 浏览器和 Firefox 安装入口。移动端与其他
+        AI 平台的支持情况，请以对应产品实际说明为准。处理敏感材料前请阅读
         <a href="/privacy/">隐私说明</a>。
       </p>
     </article>

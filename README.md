@@ -24,7 +24,8 @@ Astro 静态输出目录为 `dist/`，可以部署至支持静态 HTML 的托管
 
 ## 内容与配置
 
-- `src/data/site.ts`：品牌、正式域名、商店入口、联系方式、功能和 FAQ。
+- `src/data/site.ts`：品牌、正式域名、Chrome / Edge / 360 / Firefox 安装入口、联系方式、功能和 FAQ。
+- `src/components/BrowserDownloads.astro`：共享的浏览器安装列表，首页使用紧凑样式，安装页使用完整说明。
 - `src/content/guides/*.md`：六篇教程，字段由 `src/content.config.ts` 校验。
 - `src/pages/index.astro`：首页。
 - `src/pages/features/[slug].astro`：功能页模板。
@@ -48,7 +49,7 @@ Astro 静态输出目录为 `dist/`，可以部署至支持静态 HTML 的托管
 
 ```js
 window.addEventListener('exporter:analytics', ({ detail }) => {
-  // detail: { event: 'store_click', page_path, button_location }
+  // detail: { event: 'store_click', page_path, button_location, browser }
   // 在这里接入选定且已完成隐私披露的分析服务。
 });
 ```

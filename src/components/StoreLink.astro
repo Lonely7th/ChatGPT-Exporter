@@ -1,5 +1,4 @@
 ---
-import { SITE } from '../data/site';
 import Icon from './Icon.astro';
 interface Props {
   label?: string;
@@ -7,7 +6,7 @@ interface Props {
   secondary?: boolean;
 }
 const {
-  label = '前往 Chrome 应用商店',
+  label = '选择浏览器安装',
   location = 'page',
   secondary = false,
 } = Astro.props;
@@ -15,13 +14,10 @@ const {
 
 <a
   class:list={['button', secondary ? 'button-light' : 'button-primary']}
-  href={SITE.store}
-  target="_blank"
-  rel="noopener noreferrer"
-  data-store-link
+  href="/install/#browsers"
   data-location={location}
 >
-  <Icon name="chrome" size={19} />
+  <Icon name="download" size={19} />
   {label}
   <Icon name="arrow" size={17} />
 </a>

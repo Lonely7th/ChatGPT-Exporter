@@ -1,0 +1,36 @@
+---
+import { browsers } from '../data/site';
+import Icon from './Icon.astro';
+interface Props {
+  compact?: boolean;
+  location?: string;
+}
+const { compact = false, location = 'browser-downloads' } = Astro.props;
+---
+
+<div
+  class:list={['browser-downloads', { compact }]}
+  aria-label="浏览器安装入口"
+>
+  {browsers.map((browser) => (
+    <a
+      class={`browser-download browser-${browser.id}`}
+      href={browser.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-store-link
+      data-browser={browser.id}
+      data-location={location}
+      aria-label={`${browser.name} 安装入口（新窗口）`}
+    >
+      <span class="browser-badge" aria-hidden="true">
+        {browser.badge}
+      </span>
+      <span>
+        <strong>{browser.name}</strong>
+        {!compact && <small>{browser.description}</small>}
+      </span>
+      <Icon name="arrow" size={16} />
+    </a>
+  ))}
+</div>

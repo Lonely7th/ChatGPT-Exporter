@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Preview from '../components/Preview.astro';
+import BrowserDownloads from '../components/BrowserDownloads.astro';
 import Icon from '../components/Icon.astro';
 import StoreLink from '../components/StoreLink.astro';
 import { features, faqs, SITE } from '../data/site';
@@ -9,9 +10,9 @@ const schema = {
   '@type': 'SoftwareApplication',
   name: SITE.name,
   url: SITE.origin,
-  downloadUrl: SITE.store,
+  downloadUrl: `${SITE.origin}/install/`,
   applicationCategory: 'UtilitiesApplication',
-  operatingSystem: '桌面 Chrome 浏览器',
+  operatingSystem: '桌面端 Chrome、Edge、360 浏览器与 Firefox',
   description:
     '将 ChatGPT 对话导出为 Word、PDF、Excel，支持当前对话内多条消息的批量导出。',
   inLanguage: 'zh-CN',
@@ -43,11 +44,12 @@ const schema = {
           保留公式、表格与排版，让灵感走进工作和学习。
         </p>
         <div class="hero-actions">
-          <StoreLink label="安装 Chrome 插件" location="hero" />
+          <StoreLink label="选择浏览器安装" location="hero" />
           <a class="button button-light" href="/examples/">
             查看导出示例 <Icon name="arrow" size={17} />
           </a>
         </div>
+        <BrowserDownloads compact location="hero-browser" />
         <div class="hero-meta">
           <span>
             <Icon name="check" size={15} />
@@ -58,7 +60,7 @@ const schema = {
             中文服务，不限对话语言
           </span>
         </div>
-        <p class="mobile-hint">请在电脑上的 Chrome 浏览器中安装与使用。</p>
+        <p class="mobile-hint">请在电脑上选择对应浏览器版本安装与使用。</p>
       </div>
       <Preview />
     </div>
@@ -180,7 +182,7 @@ const schema = {
         {
           n: '01',
           title: '安装插件',
-          text: '在桌面 Chrome 应用商店安装 ChatGPT Exporter，并启用站点访问权限。',
+          text: '选择 Chrome、Edge、360 或 Firefox 版本安装，并启用站点访问权限。',
         },
         {
           n: '02',
@@ -267,7 +269,9 @@ const schema = {
     <p class="eyebrow">从下一次有价值的对话开始</p>
     <h2>好内容，值得好好保存。</h2>
     <p>安装 ChatGPT Exporter，把工作与学习中的收获带走。</p>
-    <StoreLink label="前往商店安装插件" location="bottom-cta" />
-    <small>桌面 Chrome · 转换需联网 · 额度与权益以插件内提示为准</small>
+    <StoreLink label="选择浏览器安装插件" location="bottom-cta" />
+    <small>
+      Chrome / Edge / 360 / Firefox · 转换需联网 · 额度与权益以插件内提示为准
+    </small>
   </section>
 </Base>
