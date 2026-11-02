@@ -1,6 +1,17 @@
 ---
 import { browsers } from '../data/site';
 import Icon from './Icon.astro';
+import { Image } from 'astro:assets';
+import chromeLogo from '../assets/browsers/chrome.png';
+import edgeLogo from '../assets/browsers/edge.png';
+import browser360Logo from '../assets/browsers/360.png';
+import firefoxLogo from '../assets/browsers/firefox.png';
+const browserLogos = {
+  chrome: chromeLogo,
+  edge: edgeLogo,
+  '360': browser360Logo,
+  firefox: firefoxLogo,
+};
 interface Props {
   compact?: boolean;
   location?: string;
@@ -24,7 +35,14 @@ const { compact = false, location = 'browser-downloads' } = Astro.props;
       aria-label={`${browser.name} 安装入口（新窗口）`}
     >
       <span class="browser-badge" aria-hidden="true">
-        {browser.badge}
+        <Image
+          src={browserLogos[browser.id]}
+          alt=""
+          width={36}
+          height={36}
+          format="webp"
+          densities={[1, 2]}
+        />
       </span>
       <span>
         <strong>{browser.name}</strong>

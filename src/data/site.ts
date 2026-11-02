@@ -13,7 +13,6 @@ export const browsers = [
     label: 'Chrome 应用商店',
     href: SITE.store,
     description: '前往 Chrome 应用商店安装。',
-    badge: 'C',
   },
   {
     id: 'edge',
@@ -21,7 +20,6 @@ export const browsers = [
     label: 'Microsoft Edge 加载项',
     href: 'https://microsoftedge.microsoft.com/addons/detail/chatgpt-exporter-%E2%80%93-chatgp/dmljnfinhbjeaooocieckmjbajlcgblg',
     description: '前往 Microsoft Edge 加载项安装。',
-    badge: 'e',
   },
   {
     id: '360',
@@ -29,7 +27,6 @@ export const browsers = [
     label: '360 浏览器安装入口',
     href: 'https://chatgpt.aiwhaler.com/index/',
     description: '打开安装页面，按页面说明完成安装。',
-    badge: '360',
   },
   {
     id: 'firefox',
@@ -37,7 +34,6 @@ export const browsers = [
     label: 'Firefox 附加组件',
     href: 'https://addons.mozilla.org/zh-CN/firefox/addon/chatgpt-exporter-ai2word/',
     description: '前往 Firefox 附加组件页面安装。',
-    badge: 'F',
   },
 ] as const;
 export const features = [
