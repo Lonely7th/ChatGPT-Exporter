@@ -2,6 +2,7 @@
 title: ChatGPT 导出 PDF：插件导出与浏览器打印怎么选？
 description: 对比浏览器打印和插件 PDF 导出的用途，了解公式、表格与长内容的检查方法。
 category: PDF 导出
+published: '2026-11-02'
 updated: '2026-11-02'
 order: 3
 minutes: 4

@@ -1595,3 +1595,10 @@ ul {
     padding: 17px;
   }
 }
+
+.product-definition {
+  max-width: 900px;
+  font-size: 14px;
+  line-height: 1.95;
+  margin: -10px 0 30px;
+}

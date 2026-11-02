@@ -2,6 +2,7 @@
 title: ChatGPT 数学公式复制到 Word 乱码怎么办？
 description: 区分 LaTeX 源码、公式显示与公式可编辑性，了解导出数学内容时的检查方法。
 category: 公式与排版
+published: '2026-11-02'
 updated: '2026-11-02'
 order: 2
 minutes: 5

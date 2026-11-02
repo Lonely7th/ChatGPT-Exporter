@@ -13,6 +13,7 @@ const walk = (dir) =>
 const files = walk(root),
   pages = files.filter((p) => p.endsWith('.html'));
 const titles = new Set();
+const descriptions = new Set();
 let links = 0,
   schemas = 0;
 for (const file of pages) {
@@ -23,6 +24,11 @@ for (const file of pages) {
   titles.add(title);
   assert.match(html, /<html[^>]+lang="zh-CN"/, file);
   assert.match(html, /<meta name="description" content="[^"]+"/, file);
+  const description = html.match(
+    /<meta name="description" content="([^"]+)"/,
+  )?.[1];
+  assert.ok(!descriptions.has(description), `Duplicate description: ${file}`);
+  descriptions.add(description);
   assert.equal(
     (html.match(/<h1[ >]/g) || []).length,
     1,
@@ -33,11 +39,47 @@ for (const file of pages) {
     /<link rel="canonical" href="https:\/\/chatgptexporter.cn\//,
     file,
   );
+  const nodes = [];
   for (const schema of html.matchAll(
     /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g,
   )) {
-    JSON.parse(schema[1]);
+    const parsed = JSON.parse(schema[1]);
+    nodes.push(...(Array.isArray(parsed) ? parsed : [parsed]));
     schemas++;
+  }
+  const site = nodes.find((node) => node['@type'] === 'WebSite');
+  const page = nodes.find((node) => node['@type'] === 'WebPage');
+  assert.equal(site?.['@id'], 'https://chatgptexporter.cn/#website', file);
+  assert.equal(page?.isPartOf?.['@id'], site['@id'], file);
+  const crumbs = nodes.filter((node) => node['@type'] === 'BreadcrumbList');
+  const isInnerPage =
+    file !== path.join(root, 'index.html') && !file.endsWith('404.html');
+  assert.equal(
+    crumbs.length,
+    isInnerPage ? 1 : 0,
+    `Unexpected breadcrumb count: ${file}`,
+  );
+  if (isInnerPage) {
+    assert.equal(crumbs[0]['@id'], page.breadcrumb['@id'], file);
+    const items = crumbs[0].itemListElement;
+    assert.equal(items.at(-1).item, page.url, file);
+    assert.equal(items[0].item, 'https://chatgptexporter.cn/', file);
+  }
+  const article = nodes.find((node) => node['@type'] === 'Article');
+  if (article) {
+    assert.match(html, /<meta property="og:type" content="article"/, file);
+    assert.ok(
+      article.datePublished <= article.dateModified,
+      `Invalid article chronology: ${file}`,
+    );
+    assert.ok(
+      html.includes(`datetime="${article.datePublished}"`),
+      `Publication date must be visible: ${file}`,
+    );
+    assert.ok(
+      html.includes(`datetime="${article.dateModified}"`),
+      `Modified date must be visible: ${file}`,
+    );
   }
   for (const [, raw] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
     if (!raw.startsWith('/') || raw.startsWith('//')) continue;
@@ -56,6 +98,15 @@ for (const file of pages) {
     assert.ok(
       html.includes(`id="${anchor}"`),
       `Broken anchor #${anchor}: ${file}`,
+    );
+  }
+  for (const [, href] of html.matchAll(/href="(\/[^"#]*#[^"]+)"/g)) {
+    const url = new URL(href, 'https://chatgptexporter.cn');
+    const target = path.join(root, url.pathname, 'index.html');
+    const content = fs.readFileSync(target, 'utf8');
+    assert.ok(
+      content.includes(`id="${decodeURIComponent(url.hash.slice(1))}"`),
+      `Broken cross-page anchor: ${href}`,
     );
   }
   assert.ok(

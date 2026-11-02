@@ -2,6 +2,7 @@
 title: 如何批量导出 ChatGPT 当前对话中的多条消息
 description: 了解批量选择、合并导出 Word 或 Markdown 的操作，以及它与全部历史备份的区别。
 category: 批量整理
+published: '2026-11-02'
 updated: '2026-11-02'
 order: 5
 minutes: 4

@@ -15,16 +15,21 @@ const { Content, headings } = await render(guide);
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
+  '@id': `${SITE.origin}/guides/${guide.id}/#article`,
   headline: guide.data.title,
   description: guide.data.description,
   dateModified: guide.data.updated,
+  datePublished: guide.data.published,
   author: {
     '@type': 'Organization',
+    '@id': `${SITE.origin}/#publisher`,
     name: SITE.name,
     url: `${SITE.origin}/about/`,
   },
   mainEntityOfPage: `${SITE.origin}/guides/${guide.id}/`,
   inLanguage: 'zh-CN',
+  publisher: { '@id': `${SITE.origin}/#publisher` },
+  isPartOf: { '@id': `${SITE.origin}/#website` },
 };
 ---
 
@@ -32,6 +37,9 @@ const schema = {
   title={`${guide.data.title}｜${SITE.name}`}
   description={guide.data.description}
   schema={schema}
+  ogType="article"
+  publishedTime={guide.data.published}
+  modifiedTime={guide.data.updated}
 >
   <PageHero
     title={guide.data.title}
@@ -41,7 +49,10 @@ const schema = {
     parentHref="/guides/"
   >
     <div class="article-meta">
-      <span>作者：ChatGPT Exporter 中文站</span>
+      <span>
+        作者：<a href="/about/">ChatGPT Exporter 中文站</a>
+      </span>
+      <time datetime={guide.data.published}>发布：{guide.data.published}</time>
       <time datetime={guide.data.updated}>更新：{guide.data.updated}</time>
       <span>{guide.data.minutes} 分钟阅读</span>
     </div>

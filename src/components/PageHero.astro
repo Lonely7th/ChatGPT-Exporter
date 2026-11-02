@@ -1,4 +1,6 @@
 ---
+import { SITE } from '../data/site';
+import { serializeJsonLd } from '../utils/seo';
 interface Props {
   title: string;
   description?: string;
@@ -7,11 +9,31 @@ interface Props {
   parentHref?: string;
 }
 const { title, description, eyebrow, parent, parentHref } = Astro.props;
+const canonical = new URL(Astro.url.pathname, SITE.origin).href;
+const items = [
+  { name: '首页', url: `${SITE.origin}/` },
+  ...(parent && parentHref
+    ? [{ name: parent, url: new URL(parentHref, SITE.origin).href }]
+    : []),
+  { name: title, url: canonical },
+];
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  '@id': `${canonical}#breadcrumb`,
+  itemListElement: items.map((item, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: item.name,
+    item: item.url,
+  })),
+};
 ---
 
+<script type="application/ld+json" set:html={serializeJsonLd(breadcrumb)} />
 <section class="page-hero">
   <div class="container">
-    <div class="breadcrumbs" aria-label="面包屑">
+    <nav class="breadcrumbs" aria-label="面包屑">
       <a href="/">首页</a>
       <span>/</span>
       {parent && (
@@ -21,7 +43,7 @@ const { title, description, eyebrow, parent, parentHref } = Astro.props;
         </>
       )}
       <span aria-current="page">{title}</span>
-    </div>
+    </nav>
     {eyebrow && <p class="eyebrow">{eyebrow}</p>}
     <h1>{title}</h1>
     {description && <p class="lead">{description}</p>}

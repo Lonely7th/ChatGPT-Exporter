@@ -11,26 +11,9 @@ export function getStaticPaths() {
   }));
 }
 const { feature: f } = Astro.props;
-const schema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: '首页', item: SITE.origin },
-    {
-      '@type': 'ListItem',
-      position: 2,
-      name: f.title,
-      item: `${SITE.origin}/features/${f.slug}/`,
-    },
-  ],
-};
 ---
 
-<Base
-  title={`${f.title}｜${SITE.name}`}
-  description={f.description}
-  schema={schema}
->
+<Base title={`${f.title}｜${SITE.name}`} description={f.description}>
   <PageHero
     title={f.title}
     description={f.description}

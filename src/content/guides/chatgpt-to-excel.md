@@ -2,6 +2,7 @@
 title: 如何将 ChatGPT 表格导出到 Excel
 description: 从生成规范表格到导出 XLSX，了解金额、日期、长数字等数据的核对方法。
 category: Excel 导出
+published: '2026-11-02'
 updated: '2026-11-02'
 order: 4
 minutes: 4

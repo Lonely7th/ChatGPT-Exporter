@@ -24,6 +24,8 @@ Astro 静态输出目录为 `dist/`，可以部署至支持静态 HTML 的托管
 
 ## 内容与配置
 
+SEO / GEO 检查记录与上线待办见 [检查报告](docs/seo-geo-audit-2026-11-02.md)。教程的 `published` 和 `updated` 使用真实日期；不要在每次构建时批量刷新。Vercel Preview 构建会显式输出 `noindex`，正式环境保持可索引。
+
 - `src/data/site.ts`：品牌、正式域名、Chrome / Edge / 360 / Firefox 安装入口、联系方式、功能和 FAQ。
 - `src/components/BrowserDownloads.astro`：共享的浏览器安装列表，首页使用紧凑样式，安装页使用完整说明。
 - `src/content/guides/*.md`：六篇教程，字段由 `src/content.config.ts` 校验。

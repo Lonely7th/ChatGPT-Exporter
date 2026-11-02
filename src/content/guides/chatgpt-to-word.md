@@ -2,6 +2,7 @@
 title: 如何将 ChatGPT 对话导出为 Word
 description: 从安装插件、选择回答到生成 DOCX 文件，了解 ChatGPT 导出 Word 的操作步骤与检查要点。
 category: Word 导出
+published: '2026-11-02'
 updated: '2026-11-02'
 order: 1
 minutes: 4

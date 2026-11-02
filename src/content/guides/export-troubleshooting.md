@@ -2,6 +2,7 @@
 title: ChatGPT 导出失败或格式异常：问题排查指南
 description: 按按钮显示、登录网络、转换结果与文档软件四个环节，排查导出和排版问题。
 category: 问题排查
+published: '2026-11-02'
 updated: '2026-11-02'
 order: 6
 minutes: 5

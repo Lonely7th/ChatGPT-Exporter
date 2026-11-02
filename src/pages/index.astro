@@ -4,10 +4,11 @@ import Preview from '../components/Preview.astro';
 import BrowserDownloads from '../components/BrowserDownloads.astro';
 import Icon from '../components/Icon.astro';
 import StoreLink from '../components/StoreLink.astro';
-import { features, faqs, SITE } from '../data/site';
+import { features, faqs, SITE, browsers } from '../data/site';
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
+  '@id': `${SITE.origin}/#software`,
   name: SITE.name,
   url: SITE.origin,
   downloadUrl: `${SITE.origin}/install/`,
@@ -16,6 +17,16 @@ const schema = {
   description:
     '将 ChatGPT 对话导出为 Word、PDF、Excel，支持当前对话内多条消息的批量导出。',
   inLanguage: 'zh-CN',
+  sameAs: browsers
+    .filter((browser) => browser.id !== '360')
+    .map((browser) => browser.href),
+  featureList: [
+    'Word 文档导出',
+    'PDF 导出',
+    'Excel 表格导出',
+    '当前对话中多条消息合并导出为 Word 或 Markdown',
+  ],
+  mainEntityOfPage: { '@id': `${SITE.origin}/#webpage` },
 };
 ---
 
@@ -85,7 +96,7 @@ const schema = {
     <div class="section-heading">
       <div>
         <p class="eyebrow">为内容找到合适的去处</p>
-        <h2>一次好对话，不止一种用法。</h2>
+        <h2>ChatGPT 对话，按需导出。</h2>
       </div>
       <p>
         从可编辑的报告，到随时查阅的资料，
@@ -93,6 +104,12 @@ const schema = {
         按需要选择合适的导出格式。
       </p>
     </div>
+    <p class="product-definition">
+      ChatGPT Exporter 是一款 ChatGPT 对话导出插件，支持将回答整理为 Word、PDF
+      和 Excel 文件，并可选择当前对话中的多条消息，合并导出为 Word 或
+      Markdown。插件支持桌面端 Chrome、Edge、360 浏览器和
+      Firefox；本站提供中文安装与使用说明。
+    </p>
     <div class="feature-grid">
       {features.map((f, i) => (
         <a class={`feature-card ${f.color}`} href={`/features/${f.slug}/`}>
